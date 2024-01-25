@@ -27,7 +27,10 @@ async function mi_peticion(){
 
     document.body.innerHTML =
     `
-    <p>${pkmn.name}</p>
+    <input type="submit">${pkmn.name}</>
+    <input type="submit">${pkmn1.name}</>
+    <input type="submit">${pkmn2.name}</>
+    <input type="submit">${pkmn3.name}</>
     <p class="pokemon-card"></p>
     `
 
