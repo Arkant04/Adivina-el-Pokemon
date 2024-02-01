@@ -12,30 +12,55 @@ async function mi_peticion(){
     const pkmn2 = await getPkmn()
     const pkmn3 = await getPkmn()
     
-    console.log(pkmn.name)
-    console.log(pkmn1.name)
-    console.log(pkmn2.name)
-    console.log(pkmn3.name)
-    console.log(pkmn.sprites.front_default)
-
     const {name} = pkmn
-    const {front_default} = pkmn.sprites
+    const {front_default} = pkmn.sprites.front_default
 
-    const imgElement = document.createElement('img');
-    imgElement.src = pkmn.sprites.front_default;
+   /* const imgElement = document.createElement('img');
+    imgElement.src = pkmn.sprites.front_default;*/
+   
+
+    const pregunta = {
+        ganador: pkmn.name,
+        imagenGanador: pkmn.sprites.front_default,
+        perdedor1: pkmn1.name,
+        perdedor2: pkmn2.name,
+        perdedor3: pkmn3.name
+    }
+    //const nombres = document.querySelector("")
+    updatePkmn(pkmn.sprites.front_default, "hidden")
+    console.log(pkmn.front_default)
+    updateOpciones(pregunta)
     
-
-    document.body.innerHTML =
-    `
-    <input type="submit">${pkmn.name}</>
-    <input type="submit">${pkmn1.name}</>
-    <input type="submit">${pkmn2.name}</>
-    <input type="submit">${pkmn3.name}</>
-    <p class="pokemon-card"></p>
-    `
-
-    const pokemonCard = document.querySelector('.pokemon-card');
-    pokemonCard.appendChild(imgElement);
+    
 }
+
+function updateOpciones(opciones){
+    const opcion1 = document.querySelector("#opcion1")
+   const opcion2 = document.querySelector("#opcion2")
+   const opcion3 = document.querySelector("#opcion3")
+   const opcion4 = document.querySelector("#opcion4")
+
+   const botones = [opcion1, opcion2, opcion3, opcion4];
+   botones.sort(() => Math.random() -0.5);
+   //randomizar mi array de botones
+   botones[0].value = opciones.ganador;
+   botones[1].value = opciones.perdedor1;
+   botones[2].value = opciones.perdedor2;
+   botones[3].value = opciones.perdedor3;
+}
+const form = document.querySelector("#form-jugador");
+const newForm = form.cloneNode(true);
+form.parentNode.replaceChild(newForm, form);
+newForm.addEventListener("click", (e) => {
+    e.preventDefault();
+    updatePkmn(pregunta.imagenGanador,"show")
+    const opcion1 = e.target.value;
+})
+
+function updatePkmn(sprite, mode){
+    const contenedor = document.querySelector("#pkmn-img");
+    contenedor.innerHTML = `<img src="${sprite}" class="${mode}">`
+}
+
 
 mi_peticion()
