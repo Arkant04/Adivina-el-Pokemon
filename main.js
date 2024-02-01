@@ -36,17 +36,17 @@ async function mi_peticion(){
 
 function updateOpciones(opciones){
     const opcion1 = document.querySelector("#opcion1")
-   const opcion2 = document.querySelector("#opcion2")
-   const opcion3 = document.querySelector("#opcion3")
-   const opcion4 = document.querySelector("#opcion4")
-
-   const botones = [opcion1, opcion2, opcion3, opcion4];
-   botones.sort(() => Math.random() -0.5);
-   //randomizar mi array de botones
-   botones[0].value = opciones.ganador;
-   botones[1].value = opciones.perdedor1;
-   botones[2].value = opciones.perdedor2;
-   botones[3].value = opciones.perdedor3;
+    const opcion2 = document.querySelector("#opcion2")
+    const opcion3 = document.querySelector("#opcion3")
+    const opcion4 = document.querySelector("#opcion4")
+    
+    const botones = [opcion1, opcion2, opcion3, opcion4];
+    botones.sort(() => Math.random() -0.5);
+    //randomizar mi array de botones
+    botones[0].value = opciones.ganador;
+    botones[1].value = opciones.perdedor1;
+    botones[2].value = opciones.perdedor2;
+    botones[3].value = opciones.perdedor3;
 }
 const form = document.querySelector("#form-jugador");
 const newForm = form.cloneNode(true);
@@ -56,6 +56,8 @@ newForm.addEventListener("click", (e) => {
     updatePkmn(pregunta.imagenGanador,"show")
     const opcion1 = e.target.value;
 })
+console.log(opcion1)
+
 
 function updatePkmn(sprite, mode){
     const contenedor = document.querySelector("#pkmn-img");
