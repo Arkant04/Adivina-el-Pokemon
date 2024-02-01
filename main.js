@@ -55,8 +55,8 @@ newForm.addEventListener("click", (e) => {
     e.preventDefault();
     updatePkmn(pregunta.imagenGanador,"show")
     const opcion1 = e.target.value;
+    console.log(opcion1)
 })
-console.log(opcion1)
 
 
 function updatePkmn(sprite, mode){
